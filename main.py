@@ -37,18 +37,18 @@ async def messege_handler(msg: Message):
 @router.callback_query(F.data == 'order')
 async def order(clbck):
     await clbck.message.edit_text(text.tp)
-@router.message()
-async def save_info(msg: Message):
-    a = 'абвгдеёжзийклмнопрстуфхшщцчъыьэюяАБВГДЕЁЖЗИЁКЛМНОПРСТУФШЩХЦЧЪЫЬЭЮЯ'
-    if (msg.text[0] == '8' or msg.text[0] == 8 or msg.text[0] == '+') and msg.text[-1] in a:
-        info = msg.text
-        with open('client.csv', 'a', newline='', encoding='utf8') as f:
-            fwriter = csv.writer(f)
-            fwriter.writerow(info.split(' '))
-            f.close()
-        await msg.answer(text.ready, reply_markup=kb.back)
-    else:
-        await msg.answer(text.tryy)
+    @router.message()
+    async def save_info(msg: Message):
+        a = 'абвгдеёжзийклмнопрстуфхшщцчъыьэюяАБВГДЕЁЖЗИЁКЛМНОПРСТУФШЩХЦЧЪЫЬЭЮЯ'
+        if (msg.text[0] == '8' or msg.text[0] == 8 or msg.text[0] == '+') and msg.text[-1] in a:
+            info = msg.text
+            with open('client.csv', 'a', newline='', encoding='utf8') as f:
+                fwriter = csv.writer(f)
+                fwriter.writerow(info.split(' '))
+                f.close()
+            await msg.answer(text.ready, reply_markup=kb.back)
+        else:
+            await msg.answer(text.tryy)
 
 
 @router.callback_query(F.data == 'menu')
