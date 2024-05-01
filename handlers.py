@@ -44,4 +44,12 @@ async def ready(clbck):
 
 @router.callback_query(F.data == 'about_us')
 async def ready(clbck):
-    await clbck.message.edit_text(text.us, reply_markup=kb.back)
+    await clbck.message.edit_text(text.us, reply_markup=kb.about_us)
+
+
+@router.callback_query(F.data == 'our')
+async def ready(clbck):
+    await clbck.message.answer(text.out, reply_markup=kb.back)
+
+
+
