@@ -54,23 +54,22 @@ async def ready(clbck):
 
 @router.message(Command('clients'))
 async def base(msg: Message):
-    with open('client.csv', 'r', encoding='utf8') as f:
-        fs = f.readlines()
-        await msg.answer(''.join(fs))
-        f.close()
+    if str(msg.from_user.id) == admin.admin_id:
+        with open('client.csv', 'r', encoding='utf8') as f:
+            fs = f.readlines()
+            await msg.answer(''.join(fs))
+            f.close()
+    else:
+        await msg.answer(text.d)
 
 
 @router.message(Command('clear'))
 async def base(msg: Message):
-    with open('client.csv', 'w', encoding='utf8') as f:
-        fwriter = csv.writer(f)
-        fwriter.writerow(' ')
-        f.close()
-        await msg.answer(text.clear, reply_markup=kb.back)
-        
-        
-
-
-
-
-
+    if str(msg.from_user.id) == admin.admin_id:
+        with open('client.csv', 'w', encoding='utf8') as f:
+            fwriter = csv.writer(f)
+            fwriter.writerow(' ')
+            f.close()
+            await msg.answer(text.clear, reply_markup=kb.back)
+    else:
+        await msg.answer(text.d)
