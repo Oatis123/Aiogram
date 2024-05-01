@@ -49,7 +49,28 @@ async def ready(clbck):
 
 @router.callback_query(F.data == 'our')
 async def ready(clbck):
-    await clbck.message.answer(text.out, reply_markup=kb.back)
+    await clbck.message.edit_text(text.our, reply_markup=kb.back)
+
+
+@router.message(Command('clients'))
+async def base(msg: Message):
+    with open('client.csv', 'r', encoding='utf8') as f:
+        fs = f.readlines()
+        await msg.answer(''.join(fs))
+        f.close()
+
+
+@router.message(Command('clear'))
+async def base(msg: Message):
+    with open('client.csv', 'w', encoding='utf8') as f:
+        fwriter = csv.writer(f)
+        fwriter.writerow(' ')
+        f.close()
+        await msg.answer(text.clear, reply_markup=kb.back)
+        
+        
+
+
 
 
 
