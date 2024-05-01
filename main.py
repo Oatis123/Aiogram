@@ -46,7 +46,7 @@ async def order(clbck):
                 fwriter = csv.writer(f)
                 fwriter.writerow(info.split(' '))
                 f.close()
-            await msg.answer(text.ready, reply_markup=kb.back)
+            await msg.answer(text.ready, reply_markup=kb.back_p)
         else:
             await msg.answer(text.tryy)
 
@@ -87,6 +87,13 @@ async def base(msg: Message):
             await msg.answer(text.clear, reply_markup=kb.back)
     else:
         await msg.answer(text.d)
+
+
+@router.callback_query(F.data == 'present')
+async def present(clbck):
+    await clbck.message.answer(text.present, reply_markup=kb.present)
+
+
 
 
 
