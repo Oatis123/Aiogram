@@ -2,7 +2,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardBu
 
 
 menu = [
-    [InlineKeyboardButton(text='Сделать заказ✅', callback_data='order'), InlineKeyboardButton(text='О нас ❓', callback_data='about_us')]]
+    [InlineKeyboardButton(text='Сделать заказ✅', callback_data='order'), InlineKeyboardButton(text='О нас ❓', callback_data='about_us')], [InlineKeyboardButton(text='Тестовое меню"{}"', callback_data='menu_plus')]]
 
 sus = [[InlineKeyboardButton(text='sus', callback_data='suus')]]
 
@@ -19,6 +19,10 @@ about_us = [[InlineKeyboardButton(text='Нащи проекты🎴', callback_d
 present = [[InlineKeyboardButton(text='Подписаться на канал➡', callback_data='folow')], [InlineKeyboardButton(text='Проверить подписку✔', callback_data='check')]]
 
 
+menu_plus = [[InlineKeyboardButton(text='Робот "кумир" 📱', callback_data='robot'), InlineKeyboardButton(text='Вернуться в меню⬅', callback_data='menu')]]
+
+
+menu_plus = InlineKeyboardMarkup(inline_keyboard=menu_plus)
 present = InlineKeyboardMarkup(inline_keyboard=present)
 back_p = InlineKeyboardMarkup(inline_keyboard=back_p)
 about_us = InlineKeyboardMarkup(inline_keyboard=about_us)

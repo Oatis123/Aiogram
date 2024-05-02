@@ -94,6 +94,11 @@ async def present(clbck):
     await clbck.message.answer(text.present, reply_markup=kb.present)
 
 
+@router.callback_query(F.data == 'menu_plus')
+async def menu_plus(clbck):
+    await clbck.message.edit_text(text.menu_plus, reply_markup=kb.menu_plus)
+
+
 
 
 
