@@ -68,10 +68,13 @@ async def ready(clbck):
 
 @router.message(Command('clients'))
 async def base(msg: Message):
-    if str(msg.from_user.id) == admin.admin_id:
+    if str(msg.from_user.id) in admin.admin_id:
         with open('client.csv', 'r', encoding='utf8') as f:
             fs = f.readlines()
-            await msg.answer(''.join(fs))
+            if fs != []:
+                await msg.answer(''.join(fs))
+            else:
+                await msg.answer('Нет новых клиентов...')
             f.close()
     else:
         await msg.answer(text.d)
@@ -79,7 +82,7 @@ async def base(msg: Message):
 
 @router.message(Command('clear'))
 async def base(msg: Message):
-    if str(msg.from_user.id) == admin.admin_id:
+    if str(msg.from_user.id) in admin.admin_id:
         with open('client.csv', 'w', encoding='utf8') as f:
             fwriter = csv.writer(f)
             fwriter.writerow(' ')
