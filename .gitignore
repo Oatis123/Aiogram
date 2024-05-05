@@ -2,3 +2,4 @@
 bot.py
 /__pycache__
 *.env
+test.py
