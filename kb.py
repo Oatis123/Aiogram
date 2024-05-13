@@ -22,6 +22,10 @@ present = [[InlineKeyboardButton(text='Подписаться на канал➡
 menu_plus = [[InlineKeyboardButton(text='Робот "кумир" 📱', callback_data='robot'), InlineKeyboardButton(text='Вернуться в меню⬅', callback_data='menu')]]
 
 
+clients = [[InlineKeyboardButton(text='Очистить', callback_data='clear'), InlineKeyboardButton(text='Просмотр', callback_data='see')]]
+
+
+clients = InlineKeyboardMarkup(inline_keyboard=clients)
 menu_plus = InlineKeyboardMarkup(inline_keyboard=menu_plus)
 present = InlineKeyboardMarkup(inline_keyboard=present)
 back_p = InlineKeyboardMarkup(inline_keyboard=back_p)

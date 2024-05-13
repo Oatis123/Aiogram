@@ -4,18 +4,17 @@ from aiogram import Bot, Dispatcher
 from aiogram.enums.parse_mode import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram import types, F, Router
-from aiogram.types import Message
+from aiogram.types import Message, File, Document
 from aiogram.filters import Command
 import kb
 import text
 from aiogram import flags
-import admin
 import csv
-import config
+import secret
 
 
 async def main():
-    bot = Bot(token=config.BOT_TOKEN, parse_mode=ParseMode.HTML)
+    bot = Bot(token=secret.BOT_TOKEN, parse_mode=ParseMode.HTML)
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_router(router)
     await bot.delete_webhook(drop_pending_updates=True)
@@ -68,21 +67,27 @@ async def ready(clbck):
 
 @router.message(Command('clients'))
 async def base(msg: Message):
-    if str(msg.from_user.id) in admin.admin_id:
-        with open('client.csv', 'r', encoding='utf8') as f:
-            fs = f.readlines()
-            if fs != []:
-                await msg.answer(''.join(fs))
-            else:
-                await msg.answer('Нет новых клиентов...')
-            f.close()
+    await msg.answer(text.clients, reply_markup=kb.clients)
+
+
+@router.callback_query(F.data == 'see')
+async def base(clbck):
+    if str(clbck.from_user.id) in secret.admin_id:
+            with open('client.csv', 'r', encoding='utf8') as f:
+                fs = f.readlines()
+                if fs != []:
+                    await clbck.message.answer(''.join(fs), reply_markup=kb.back)
+                else:
+                    await clbck.message.answer('Нет новых клиентов...')
+                f.close()
     else:
-        await msg.answer(text.d)
+            await clbck.message.answer(text.d)
 
 
-@router.message(Command('clear'))
+
+@router.callback_query(F.data == 'clear')
 async def base(msg: Message):
-    if str(msg.from_user.id) in admin.admin_id:
+    if str(msg.from_user.id) in secret.admin_id:
         with open('client.csv', 'w', encoding='utf8') as f:
             fwriter = csv.writer(f)
             fwriter.writerow(' ')

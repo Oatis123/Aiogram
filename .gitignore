@@ -1,3 +1,5 @@
 config.py
 *.рус
 client.csv
+config.py
+secret.py
