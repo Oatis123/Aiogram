@@ -3,3 +3,10 @@ config.py
 client.csv
 config.py
 secret.py
+cheat-code (3).py
+solver.py
+__pycache__/kb.cpython-311.pyc
+*.pyc
+*.pyc
+test.py
+client.csv

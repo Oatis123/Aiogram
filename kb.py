@@ -25,6 +25,13 @@ menu_plus = [[InlineKeyboardButton(text='Робот "кумир" 📱', callback
 clients = [[InlineKeyboardButton(text='Очистить', callback_data='clear'), InlineKeyboardButton(text='Просмотр', callback_data='see')]]
 
 
+menu_back = [[InlineKeyboardButton(text='Вернуться в тестовое меню◀', callback_data='menu_plus')]]
+
+
+back_admins = [[InlineKeyboardButton(text='Назад', callback_data='backa')]]
+
+menu_back = InlineKeyboardMarkup(inline_keyboard=menu_back)
+back_admins = InlineKeyboardMarkup(inline_keyboard=back_admins)
 clients = InlineKeyboardMarkup(inline_keyboard=clients)
 menu_plus = InlineKeyboardMarkup(inline_keyboard=menu_plus)
 present = InlineKeyboardMarkup(inline_keyboard=present)
