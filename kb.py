@@ -19,7 +19,7 @@ about_us = [[InlineKeyboardButton(text='Нащи проекты🎴', callback_d
 present = [[InlineKeyboardButton(text='Подписаться на канал➡', callback_data='folow')], [InlineKeyboardButton(text='Проверить подписку✔', callback_data='check')]]
 
 
-menu_plus = [[InlineKeyboardButton(text='Робот "кумир" 📱', callback_data='robot'), InlineKeyboardButton(text='Вернуться в меню⬅', callback_data='menu')]]
+menu_plus = [[InlineKeyboardButton(text='Робот "кумир" 📱', callback_data='robot'), InlineKeyboardButton(text='Шифратор', callback_data='codec')], [InlineKeyboardButton(text='Вернуться в меню⬅', callback_data='menu')]]
 
 
 clients = [[InlineKeyboardButton(text='Очистить', callback_data='clear'), InlineKeyboardButton(text='Просмотр', callback_data='see')]]
@@ -30,6 +30,11 @@ menu_back = [[InlineKeyboardButton(text='Вернуться в тестовое 
 
 back_admins = [[InlineKeyboardButton(text='Назад', callback_data='backa')]]
 
+
+
+code = [[InlineKeyboardButton(text='Зашифровать', callback_data='code'), InlineKeyboardButton(text='Дешифратор', callback_data='uncode')], [InlineKeyboardButton(text='Назад', callback_data='menu_back')]]
+
+code = InlineKeyboardMarkup(inline_keyboard=code)
 menu_back = InlineKeyboardMarkup(inline_keyboard=menu_back)
 back_admins = InlineKeyboardMarkup(inline_keyboard=back_admins)
 clients = InlineKeyboardMarkup(inline_keyboard=clients)

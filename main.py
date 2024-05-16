@@ -15,6 +15,22 @@ import secret
 import os
 import tkinter as tk
 from tkinter import filedialog
+import random
+
+
+
+def encrypt_message(message, key):
+    encrypted_message = ""
+    for char in message:
+        encrypted_message += chr(ord(char) + key)
+    return encrypted_message
+
+
+def decrypt_message(encrypted_message, key):
+    decrypted_message = ""
+    for char in encrypted_message:
+        decrypted_message += chr(ord(char) - key)
+    return decrypted_message
 
 
 class Cell:
@@ -315,6 +331,51 @@ async def stert_sol(clbck):
 
         await msg.answer(solve(file_name), reply_markup=kb.menu_back)
         os.remove(file_name)
+
+
+@router.callback_query(F.data == 'codec')
+async def codec(clbck):
+    await clbck.message.answer('Меню для шифровки и дешифровки сообщений', reply_markup=kb.code)
+
+
+@router.callback_query(F.data == 'code')
+async def code(clbck):
+    await clbck.message.answer('Отправьте текст для шифровки:')
+    @router.message()
+    async def codes(msg: Message):
+        text = msg.text
+        k = random.choice(secret.keys)
+        texte = encrypt_message(text, k)
+        texte = f'Зашифрованое сообщение: {texte}' + f'\nЗапомните данный ключ для дешифровки: {k}'
+        await msg.answer(texte, reply_markup=kb.menu_back)
+
+
+
+@router.callback_query(F.data == 'uncode')
+async def uncode(clbck):
+    await clbck.message.answer('Отправьте текст и ключ для расшифровки через пробел в формате (текст ключ):')
+    @router.message()
+    async def codes(msg: Message):
+        text = msg.text
+        texte = text.split(' ')
+        key = texte[-1]
+        texte.pop(-1)
+        texte = ' '.join(texte)
+        await msg.answer(f'Расшифрованный текс: {decrypt_message(texte, key)}', reply_markup=kb.menu_back)
+        
+
+
+
+
+        
+        
+
+            
+
+
+
+
+
     
 
 
